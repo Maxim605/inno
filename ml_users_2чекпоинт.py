@@ -18,13 +18,13 @@ pd.set_option('display.max_columns', 30)
 # df2 = pd.read_csv('main2.csv',skipinitialspace=True, nrows = 1_000)
 # df3 = pd.read_csv('main3.csv',skipinitialspace=True, nrows = 1_000)
 
-df = pd.read_csv('main1.csv',skipinitialspace=True)
+df1 = pd.read_csv('main1.csv',skipinitialspace=True)
 
 df2 = pd.read_csv('main2.csv',skipinitialspace=True)
 
 df3 = pd.read_csv('main3.csv',skipinitialspace=True)
 
-df = df.applymap(lambda s: s.lower() if type(s) == str else s)
+df1 = df1.applymap(lambda s: s.lower() if type(s) == str else s)
 df2 = df2.applymap(lambda s: s.lower() if type(s) == str else s)
 df3 = df3.applymap(lambda s: s.lower() if type(s) == str else s)
 
@@ -55,7 +55,7 @@ df3_full_names = df3['name']
 
 for go, i in enumerate(df2_full_names):
 
-    matches_df = process.extract(i, df['full_name'], scorer=fuzz.WRatio, limit=5)
+    matches_df = process.extract(i, df1['full_name'], scorer=fuzz.WRatio, limit=2)
 
 
     for match_df in matches_df:
@@ -67,7 +67,7 @@ for go, i in enumerate(df2_full_names):
 
         if name_similarity_all >= count:
 
-            matches_df3 = process.extract(i, df3_full_names, scorer=fuzz.WRatio, limit=5)
+            matches_df3 = process.extract(i, df3_full_names, scorer=fuzz.WRatio, limit=2)
 
 
             for match_df3 in matches_df3:
@@ -78,7 +78,7 @@ for go, i in enumerate(df2_full_names):
 
                 if name_similarity_all3 >= count:
                     results.append(pd.concat([
-                        df.loc[df['full_name'] == j],
+                        df1.loc[df['full_name'] == j],
                         df2.iloc[[go]],
                         df3.loc[df3['name'] == k]
                     ], axis=1))
