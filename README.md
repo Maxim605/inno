@@ -1,5 +1,9 @@
 # inno
 
+
+docker-compose up --build
+
+
 ML Users
 Наш проект разработан в рамках задачи из кейса 1 хакатона IT Inno Hack.
 
