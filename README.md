@@ -1,7 +1,7 @@
 # inno
 
 
-<tab><tab>docker-compose up --build/
+<tab>docker-compose up --build<tab>
 
 
 ML Users
